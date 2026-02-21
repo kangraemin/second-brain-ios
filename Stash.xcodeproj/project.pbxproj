@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AA000001 /* StashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000011 /* StashApp.swift */; };
-		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000012 /* ContentView.swift */; };
 		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000013 /* Assets.xcassets */; };
 		AA000004 /* StashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000014 /* StashTests.swift */; };
 		AA000005 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AA000201 /* ComposableArchitecture */; };
@@ -65,7 +64,6 @@
 
 /* Begin PBXFileReference section */
 		AA000011 /* StashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashApp.swift; sourceTree = "<group>"; };
-		AA000012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA000013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA000014 /* StashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashTests.swift; sourceTree = "<group>"; };
 		AA000015 /* Stash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Stash.entitlements; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				FF000032 /* AppFeature.swift */,
-				AA000012 /* ContentView.swift */,
 				AA000011 /* StashApp.swift */,
 			);
 			path = App;
@@ -513,7 +510,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA000001 /* StashApp.swift in Sources */,
-				AA000002 /* ContentView.swift in Sources */,
 				DD000001 /* ContentType.swift in Sources */,
 				DD000002 /* SavedContent.swift in Sources */,
 				DD000003 /* SavedContent+Mock.swift in Sources */,
