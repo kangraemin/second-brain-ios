@@ -29,6 +29,7 @@
 		FF000005 /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000012 /* HomeFeatureTests.swift */; };
 		FF000007 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000013 /* HomeView.swift */; };
 		FF000021 /* ContentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000022 /* ContentCardView.swift */; };
+		FF000031 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000032 /* AppFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		FF000012 /* HomeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeatureTests.swift; sourceTree = "<group>"; };
 		FF000013 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FF000022 /* ContentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCardView.swift; sourceTree = "<group>"; };
+		FF000032 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +148,9 @@
 		BB000001 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				AA000011 /* StashApp.swift */,
+				FF000032 /* AppFeature.swift */,
 				AA000012 /* ContentView.swift */,
+				AA000011 /* StashApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				FF000001 /* HomeFeature.swift in Sources */,
 				FF000007 /* HomeView.swift in Sources */,
 				FF000021 /* ContentCardView.swift in Sources */,
+				FF000031 /* AppFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
