@@ -31,6 +31,7 @@
 		FF000003 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = FF000202 /* IdentifiedCollections */; };
 		FF000004 /* PerceptionCore in Frameworks */ = {isa = PBXBuildFile; productRef = FF000203 /* PerceptionCore */; };
 		FF000005 /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000012 /* HomeFeatureTests.swift */; };
+		FF000006 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = FF000204 /* OrderedCollections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 				FF000002 /* CasePathsCore in Frameworks */,
 				FF000003 /* IdentifiedCollections in Frameworks */,
 				FF000004 /* PerceptionCore in Frameworks */,
+				FF000006 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,9 +397,10 @@
 			packageProductDependencies = (
 				AA000201 /* ComposableArchitecture */,
 				EE000201 /* Dependencies */,
-				FF000201 /* CasePaths */,
+				FF000201 /* CasePathsCore */,
 				FF000202 /* IdentifiedCollections */,
-				FF000203 /* Perception */,
+				FF000203 /* PerceptionCore */,
+				FF000204 /* OrderedCollections */,
 			);
 			productName = Stash;
 			productReference = AA000060 /* Stash.app */;
@@ -478,6 +481,7 @@
 				FF000200 /* XCRemoteSwiftPackageReference "swift-case-paths" */,
 				FF000210 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
 				FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */,
+				FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = AA000083 /* Products */;
 			projectDirPath = "";
@@ -922,6 +926,14 @@
 				minimumVersion = 1.3.4;
 			};
 		};
+		FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -954,6 +966,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */;
 			productName = PerceptionCore;
+		};
+		FF000204 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 
