@@ -12,11 +12,53 @@ struct HomeView: View {
 
                 Divider()
 
-                // 카드 그리드는 Step 2.7에서 추가
-                Spacer()
+                if store.isLoading {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                } else if store.filteredContents.isEmpty {
+                    Spacer()
+                    emptyState
+                    Spacer()
+                } else {
+                    cardGrid
+                }
             }
             .navigationTitle("Stash")
             .onAppear { store.send(.onAppear) }
+        }
+    }
+
+    // MARK: - Card Grid
+
+    private var cardGrid: some View {
+        ScrollView {
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible(), spacing: 12),
+                    GridItem(.flexible(), spacing: 12),
+                ],
+                spacing: 12
+            ) {
+                ForEach(store.filteredContents) { content in
+                    ContentCardView(content: content)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top, 12)
+        }
+    }
+
+    // MARK: - Empty State
+
+    private var emptyState: some View {
+        VStack(spacing: 8) {
+            Text("저장된 콘텐츠가 없습니다")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+            Text("공유하기로 콘텐츠를 저장해 보세요")
+                .font(.subheadline)
+                .foregroundStyle(.tertiary)
         }
     }
 
@@ -60,6 +102,35 @@ struct FilterChipView: View {
                 )
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - ContentCardView (placeholder — Step 2.8에서 교체)
+
+struct ContentCardView: View {
+    let content: SavedContent
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(.systemGray5))
+                .aspectRatio(16 / 9, contentMode: .fit)
+                .overlay {
+                    Text(content.contentType.rawValue)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
+            Text(content.title)
+                .font(.footnote)
+                .fontWeight(.medium)
+                .lineLimit(2)
+
+            Text(content.url.host ?? "")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+        }
     }
 }
 
