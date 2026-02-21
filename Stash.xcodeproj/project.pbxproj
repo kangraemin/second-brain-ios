@@ -27,9 +27,10 @@
 		EE000007 /* ContentClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000017 /* ContentClientLive.swift */; };
 		EE000008 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = EE000201 /* Dependencies */; };
 		FF000001 /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000011 /* HomeFeature.swift */; };
-		FF000002 /* CasePaths in Frameworks */ = {isa = PBXBuildFile; productRef = FF000201 /* CasePaths */; };
+		FF000002 /* CasePathsCore in Frameworks */ = {isa = PBXBuildFile; productRef = FF000201 /* CasePathsCore */; };
 		FF000003 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = FF000202 /* IdentifiedCollections */; };
-		FF000004 /* Perception in Frameworks */ = {isa = PBXBuildFile; productRef = FF000203 /* Perception */; };
+		FF000004 /* PerceptionCore in Frameworks */ = {isa = PBXBuildFile; productRef = FF000203 /* PerceptionCore */; };
+		FF000005 /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000012 /* HomeFeatureTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		EE000016 /* ContentMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMapperTests.swift; sourceTree = "<group>"; };
 		EE000017 /* ContentClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClientLive.swift; sourceTree = "<group>"; };
 		FF000011 /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
+		FF000012 /* HomeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeatureTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +97,9 @@
 			files = (
 				AA000005 /* ComposableArchitecture in Frameworks */,
 				EE000008 /* Dependencies in Frameworks */,
-				FF000002 /* CasePaths in Frameworks */,
+				FF000002 /* CasePathsCore in Frameworks */,
 				FF000003 /* IdentifiedCollections in Frameworks */,
-				FF000004 /* Perception in Frameworks */,
+				FF000004 /* PerceptionCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,8 +335,17 @@
 				AA000014 /* StashTests.swift */,
 				EE000080 /* Domain */,
 				EE000081 /* Data */,
+				FF000082 /* Features */,
 			);
 			path = StashTests;
+			sourceTree = "<group>";
+		};
+		FF000082 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FF000012 /* HomeFeatureTests.swift */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		EE000080 /* Domain */ = {
@@ -530,6 +541,7 @@
 				AA000004 /* StashTests.swift in Sources */,
 				EE000002 /* ContentTypeParserTests.swift in Sources */,
 				EE000006 /* ContentMapperTests.swift in Sources */,
+				FF000005 /* HomeFeatureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,17 +943,17 @@
 		FF000201 /* CasePaths */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF000200 /* XCRemoteSwiftPackageReference "swift-case-paths" */;
-			productName = CasePaths;
+			productName = CasePathsCore;
 		};
 		FF000202 /* IdentifiedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF000210 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
 			productName = IdentifiedCollections;
 		};
-		FF000203 /* Perception */ = {
+		FF000203 /* PerceptionCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */;
-			productName = Perception;
+			productName = PerceptionCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 
