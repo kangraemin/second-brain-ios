@@ -45,11 +45,7 @@ struct HomeFeature {
 
             case .contentsLoaded(let contents):
                 state.isLoading = false
-                var array = IdentifiedArrayOf<SavedContent>()
-                for content in contents {
-                    array.append(content)
-                }
-                state.contents = array
+                state.contents = IdentifiedArrayOf(uniqueElements: contents)
                 state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
                 return .none
 

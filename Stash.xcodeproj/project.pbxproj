@@ -12,7 +12,6 @@
 		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000013 /* Assets.xcassets */; };
 		AA000004 /* StashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000014 /* StashTests.swift */; };
 		AA000005 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AA000201 /* ComposableArchitecture */; };
-		AA000006 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AA000202 /* ComposableArchitecture */; };
 		CC000001 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000011 /* ShareViewController.swift */; };
 		CC000002 /* StashShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CC000060 /* StashShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DD000001 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000011 /* ContentType.swift */; };
@@ -27,11 +26,7 @@
 		EE000007 /* ContentClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000017 /* ContentClientLive.swift */; };
 		EE000008 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = EE000201 /* Dependencies */; };
 		FF000001 /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000011 /* HomeFeature.swift */; };
-		FF000002 /* CasePathsCore in Frameworks */ = {isa = PBXBuildFile; productRef = FF000201 /* CasePathsCore */; };
-		FF000003 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = FF000202 /* IdentifiedCollections */; };
-		FF000004 /* PerceptionCore in Frameworks */ = {isa = PBXBuildFile; productRef = FF000203 /* PerceptionCore */; };
 		FF000005 /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF000012 /* HomeFeatureTests.swift */; };
-		FF000006 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = FF000204 /* OrderedCollections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,10 +93,6 @@
 			files = (
 				AA000005 /* ComposableArchitecture in Frameworks */,
 				EE000008 /* Dependencies in Frameworks */,
-				FF000002 /* CasePathsCore in Frameworks */,
-				FF000003 /* IdentifiedCollections in Frameworks */,
-				FF000004 /* PerceptionCore in Frameworks */,
-				FF000006 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000006 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,10 +387,6 @@
 			packageProductDependencies = (
 				AA000201 /* ComposableArchitecture */,
 				EE000201 /* Dependencies */,
-				FF000201 /* CasePathsCore */,
-				FF000202 /* IdentifiedCollections */,
-				FF000203 /* PerceptionCore */,
-				FF000204 /* OrderedCollections */,
 			);
 			productName = Stash;
 			productReference = AA000060 /* Stash.app */;
@@ -420,9 +406,6 @@
 				AA000031 /* PBXTargetDependency */,
 			);
 			name = StashTests;
-			packageProductDependencies = (
-				AA000202 /* ComposableArchitecture */,
-			);
 			productName = StashTests;
 			productReference = AA000061 /* StashTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -478,10 +461,6 @@
 			packageReferences = (
 				AA000200 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				EE000200 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
-				FF000200 /* XCRemoteSwiftPackageReference "swift-case-paths" */,
-				FF000210 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
-				FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */,
-				FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = AA000083 /* Products */;
 			projectDirPath = "";
@@ -902,38 +881,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		FF000200 /* XCRemoteSwiftPackageReference "swift-case-paths" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-case-paths";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
-			};
-		};
-		FF000210 /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-identified-collections";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-		FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-perception";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.4;
-			};
-		};
-		FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -942,35 +889,10 @@
 			package = AA000200 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		AA000202 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA000200 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
 		EE000201 /* Dependencies */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EE000200 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = Dependencies;
-		};
-		FF000201 /* CasePaths */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF000200 /* XCRemoteSwiftPackageReference "swift-case-paths" */;
-			productName = CasePathsCore;
-		};
-		FF000202 /* IdentifiedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF000210 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
-			productName = IdentifiedCollections;
-		};
-		FF000203 /* PerceptionCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF000220 /* XCRemoteSwiftPackageReference "swift-perception" */;
-			productName = PerceptionCore;
-		};
-		FF000204 /* OrderedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF000230 /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 
