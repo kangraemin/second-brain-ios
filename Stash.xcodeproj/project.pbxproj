@@ -21,6 +21,7 @@
 		EE000001 /* ContentTypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000011 /* ContentTypeParser.swift */; };
 		EE000002 /* ContentTypeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000012 /* ContentTypeParserTests.swift */; };
 		EE000003 /* SDContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000013 /* SDContent.swift */; };
+		EE000004 /* ContentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000014 /* ContentClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		EE000011 /* ContentTypeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeParser.swift; sourceTree = "<group>"; };
 		EE000012 /* ContentTypeParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeParserTests.swift; sourceTree = "<group>"; };
 		EE000013 /* SDContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDContent.swift; sourceTree = "<group>"; };
+		EE000014 /* ContentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 		BB000013 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EE000014 /* ContentClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				DD000003 /* SavedContent+Mock.swift in Sources */,
 				EE000001 /* ContentTypeParser.swift in Sources */,
 				EE000003 /* SDContent.swift in Sources */,
+				EE000004 /* ContentClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
