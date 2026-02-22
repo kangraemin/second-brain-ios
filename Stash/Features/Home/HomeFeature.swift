@@ -16,6 +16,14 @@ struct HomeFeature {
         var selectedFilter: ContentFilter = .all
         var isLoading = false
         var isUpdatingMetadata = false
+
+        static func == (lhs: State, rhs: State) -> Bool {
+            lhs.contents == rhs.contents
+                && lhs.filteredContents == rhs.filteredContents
+                && lhs.selectedFilter == rhs.selectedFilter
+                && lhs.isLoading == rhs.isLoading
+                && lhs.isUpdatingMetadata == rhs.isUpdatingMetadata
+        }
     }
 
     enum ContentFilter: String, CaseIterable, Equatable {
@@ -46,9 +54,6 @@ struct HomeFeature {
             switch action {
             case .onAppear:
                 state.isLoading = true
-            case .contentCardTapped(let content):
-                state.path.append(.detail(DetailFeature.State(content: content)))
-                return .none
                 return .run { send in
                     do {
                         let contents = try await contentClient.fetch()
@@ -57,6 +62,10 @@ struct HomeFeature {
                         await send(.contentsLoadFailed)
                     }
                 }
+
+            case .contentCardTapped(let content):
+                state.path.append(.detail(DetailFeature.State(content: content)))
+                return .none
 
             case .contentsLoaded(let contents):
                 state.isLoading = false
