@@ -25,6 +25,13 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Stash")
+            .searchable(
+                text: Binding(
+                    get: { store.searchQuery },
+                    set: { store.send(.searchQueryChanged($0)) }
+                ),
+                prompt: "콘텐츠 검색"
+            )
             .onAppear { store.send(.onAppear) }
         } destination: { store in
             switch store.case {
@@ -70,12 +77,21 @@ struct HomeView: View {
 
     private var emptyState: some View {
         VStack(spacing: 8) {
-            Text("저장된 콘텐츠가 없습니다")
-                .font(.headline)
-                .foregroundStyle(.secondary)
-            Text("공유하기로 콘텐츠를 저장해 보세요")
-                .font(.subheadline)
-                .foregroundStyle(.tertiary)
+            if store.searchQuery.isEmpty {
+                Text("저장된 콘텐츠가 없습니다")
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+                Text("공유하기로 콘텐츠를 저장해 보세요")
+                    .font(.subheadline)
+                    .foregroundStyle(.tertiary)
+            } else {
+                Text("검색 결과가 없습니다")
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+                Text("다른 키워드로 검색해 보세요")
+                    .font(.subheadline)
+                    .foregroundStyle(.tertiary)
+            }
         }
     }
 

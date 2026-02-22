@@ -252,4 +252,76 @@ struct HomeFeatureTests {
             $0.isUpdatingMetadata = false
         }
     }
+
+    // MARK: - 검색
+
+    @Test("빈 검색어 입력 시 전체 콘텐츠가 표시된다")
+    func emptySearchShowsAll() async {
+        let allContents: [SavedContent] = [.mockYouTube, .mockInstagram, .mockCoupang]
+
+        var state = HomeFeature.State()
+        state.contents = IdentifiedArrayOf(uniqueElements: allContents)
+        state.filteredContents = IdentifiedArrayOf(uniqueElements: allContents)
+        state.searchQuery = "이전 검색어"
+
+        let store = TestStore(initialState: state) {
+            HomeFeature()
+        }
+
+        await store.send(.searchQueryChanged("")) {
+            $0.searchQuery = ""
+            $0.filteredContents = IdentifiedArrayOf(uniqueElements: allContents)
+        }
+    }
+
+    @Test("검색어 입력 시 검색 결과가 반영된다")
+    func searchQueryUpdatesResults() async {
+        let allContents: [SavedContent] = [.mockYouTube, .mockInstagram, .mockCoupang]
+        let searchResults: [SavedContent] = [.mockYouTube]
+
+        var state = HomeFeature.State()
+        state.contents = IdentifiedArrayOf(uniqueElements: allContents)
+        state.filteredContents = IdentifiedArrayOf(uniqueElements: allContents)
+
+        let store = TestStore(initialState: state) {
+            HomeFeature()
+        } withDependencies: {
+            $0.searchClient.search = { _ in searchResults }
+            $0.mainQueue = .immediate
+        }
+
+        await store.send(.searchQueryChanged("Swift")) {
+            $0.searchQuery = "Swift"
+        }
+
+        await store.receive(\.searchResultsReceived) {
+            $0.filteredContents = IdentifiedArrayOf(uniqueElements: searchResults)
+        }
+    }
+
+    @Test("검색 결과에 필터가 함께 적용된다")
+    func searchWithFilterApplied() async {
+        let allContents: [SavedContent] = [.mockYouTube, .mockInstagram, .mockCoupang]
+        let searchResults: [SavedContent] = [.mockYouTube, .mockCoupang]
+
+        var state = HomeFeature.State()
+        state.contents = IdentifiedArrayOf(uniqueElements: allContents)
+        state.filteredContents = IdentifiedArrayOf(uniqueElements: allContents)
+        state.selectedFilter = .shopping
+
+        let store = TestStore(initialState: state) {
+            HomeFeature()
+        } withDependencies: {
+            $0.searchClient.search = { _ in searchResults }
+            $0.mainQueue = .immediate
+        }
+
+        await store.send(.searchQueryChanged("Apple")) {
+            $0.searchQuery = "Apple"
+        }
+
+        await store.receive(\.searchResultsReceived) {
+            $0.filteredContents = IdentifiedArrayOf(uniqueElements: [SavedContent.mockCoupang])
+        }
+    }
 }

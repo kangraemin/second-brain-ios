@@ -14,6 +14,7 @@ struct HomeFeature {
         var contents: IdentifiedArrayOf<SavedContent> = []
         var filteredContents: IdentifiedArrayOf<SavedContent> = []
         var selectedFilter: ContentFilter = .all
+        var searchQuery = ""
         var isLoading = false
         var isUpdatingMetadata = false
 
@@ -21,6 +22,7 @@ struct HomeFeature {
             lhs.contents == rhs.contents
                 && lhs.filteredContents == rhs.filteredContents
                 && lhs.selectedFilter == rhs.selectedFilter
+                && lhs.searchQuery == rhs.searchQuery
                 && lhs.isLoading == rhs.isLoading
                 && lhs.isUpdatingMetadata == rhs.isUpdatingMetadata
         }
@@ -39,6 +41,8 @@ struct HomeFeature {
         case onAppear
         case contentCardTapped(SavedContent)
         case filterTapped(ContentFilter)
+        case searchQueryChanged(String)
+        case searchResultsReceived([SavedContent])
         case contentsLoaded([SavedContent])
         case contentsLoadFailed
         case metadataUpdateCompleted([SavedContent])
@@ -47,8 +51,13 @@ struct HomeFeature {
         case path(StackActionOf<Path>)
     }
 
+    private enum CancelID {
+        case search
+    }
+
     @Dependency(\.contentClient) var contentClient
     @Dependency(\.metadataClient) var metadataClient
+    @Dependency(\.searchClient) var searchClient
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -71,7 +80,9 @@ struct HomeFeature {
             case .contentsLoaded(let contents):
                 state.isLoading = false
                 state.contents = IdentifiedArrayOf(uniqueElements: contents)
-                state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
+                state.filteredContents = applyFilter(
+                    state.selectedFilter, to: state.contents
+                )
 
                 let needsUpdate = contents.filter { $0.needsMetadataUpdate }
                 guard !needsUpdate.isEmpty else { return .none }
@@ -106,7 +117,9 @@ struct HomeFeature {
                 for content in updatedContents {
                     state.contents[id: content.id] = content
                 }
-                state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
+                state.filteredContents = applyFilter(
+                    state.selectedFilter, to: state.contents
+                )
                 return .none
 
             case .metadataUpdateFailed:
@@ -118,10 +131,35 @@ struct HomeFeature {
                 state.filteredContents = applyFilter(filter, to: state.contents)
                 return .none
 
+            case .searchQueryChanged(let query):
+                state.searchQuery = query
+
+                guard !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+                    state.filteredContents = applyFilter(
+                        state.selectedFilter, to: state.contents
+                    )
+                    return .cancel(id: CancelID.search)
+                }
+
+                return .run { [searchClient] send in
+                    let results = try await searchClient.search(query)
+                    await send(.searchResultsReceived(results))
+                }
+                .debounce(id: CancelID.search, for: .milliseconds(300), scheduler: DispatchQueue.main)
+
+            case .searchResultsReceived(let results):
+                let filtered = IdentifiedArrayOf(uniqueElements: results)
+                state.filteredContents = applyFilter(
+                    state.selectedFilter, to: filtered
+                )
+                return .none
+
             case .swipeDeleteTapped(let content):
                 let id = content.id
                 state.contents.remove(id: id)
-                state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
+                state.filteredContents = applyFilter(
+                    state.selectedFilter, to: state.contents
+                )
                 return .run { [contentClient] _ in
                     try await contentClient.delete(id)
                 }
@@ -129,7 +167,9 @@ struct HomeFeature {
             case .path(.element(_, action: .detail(.delegate(.contentDeleted(let id))))):
                 state.path.removeLast()
                 state.contents.remove(id: id)
-                state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
+                state.filteredContents = applyFilter(
+                    state.selectedFilter, to: state.contents
+                )
                 return .none
 
             case .path:
