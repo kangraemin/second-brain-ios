@@ -9,6 +9,7 @@ struct HomeFeature {
         var filteredContents: IdentifiedArrayOf<SavedContent> = []
         var selectedFilter: ContentFilter = .all
         var isLoading = false
+        var isUpdatingMetadata = false
     }
 
     enum ContentFilter: String, CaseIterable, Equatable {
@@ -25,9 +26,12 @@ struct HomeFeature {
         case filterTapped(ContentFilter)
         case contentsLoaded([SavedContent])
         case contentsLoadFailed
+        case metadataUpdateCompleted([SavedContent])
+        case metadataUpdateFailed
     }
 
     @Dependency(\.contentClient) var contentClient
+    @Dependency(\.metadataClient) var metadataClient
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -47,10 +51,45 @@ struct HomeFeature {
                 state.isLoading = false
                 state.contents = IdentifiedArrayOf(uniqueElements: contents)
                 state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
-                return .none
+
+                let needsUpdate = contents.filter { $0.needsMetadataUpdate }
+                guard !needsUpdate.isEmpty else { return .none }
+
+                state.isUpdatingMetadata = true
+                return .run { [contentClient, metadataClient] send in
+                    var updated: [SavedContent] = []
+                    for var content in needsUpdate {
+                        do {
+                            let metadata = try await metadataClient.fetch(content.url)
+                            if let title = metadata.title { content.title = title }
+                            content.summary = metadata.description
+                            content.thumbnailURL = metadata.imageURL
+                            if let siteName = metadata.siteName {
+                                content.metadata["siteName"] = siteName
+                            }
+                            try await contentClient.update(content)
+                            updated.append(content)
+                        } catch {
+                            // 개별 실패는 무시
+                        }
+                    }
+                    await send(.metadataUpdateCompleted(updated))
+                }
 
             case .contentsLoadFailed:
                 state.isLoading = false
+                return .none
+
+            case .metadataUpdateCompleted(let updatedContents):
+                state.isUpdatingMetadata = false
+                for content in updatedContents {
+                    state.contents[id: content.id] = content
+                }
+                state.filteredContents = applyFilter(state.selectedFilter, to: state.contents)
+                return .none
+
+            case .metadataUpdateFailed:
+                state.isUpdatingMetadata = false
                 return .none
 
             case .filterTapped(let filter):
@@ -81,5 +120,13 @@ private func applyFilter(
         return contents.filter { $0.contentType == .web }
     case .instagram:
         return contents.filter { $0.contentType == .instagram }
+    }
+}
+
+// MARK: - Metadata Update Check
+
+private extension SavedContent {
+    var needsMetadataUpdate: Bool {
+        metadata.isEmpty && thumbnailURL == nil && summary == nil
     }
 }
