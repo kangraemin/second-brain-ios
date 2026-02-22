@@ -9,4 +9,5 @@ struct SavedContent: Identifiable, Equatable {
     var thumbnailURL: URL?
     var summary: String?
     var metadata: [String: String]
+    var embeddingVector: [Float]?
 }

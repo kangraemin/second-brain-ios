@@ -6,6 +6,7 @@ enum ContentMapper {
         let contentType = ContentType(rawValue: sdContent.contentTypeRawValue) ?? .web
         let thumbnailURL: URL? = sdContent.thumbnailURLString.flatMap { URL(string: $0) }
         let metadata = decodeMetadata(sdContent.metadataJSON)
+        let embedding = decodeEmbedding(sdContent.embeddingData)
 
         return SavedContent(
             id: sdContent.id,
@@ -15,7 +16,8 @@ enum ContentMapper {
             createdAt: sdContent.createdAt,
             thumbnailURL: thumbnailURL,
             summary: sdContent.summary,
-            metadata: metadata
+            metadata: metadata,
+            embeddingVector: embedding
         )
     }
 
@@ -28,7 +30,8 @@ enum ContentMapper {
             createdAt: savedContent.createdAt,
             thumbnailURLString: savedContent.thumbnailURL?.absoluteString,
             summary: savedContent.summary,
-            metadataJSON: encodeMetadata(savedContent.metadata)
+            metadataJSON: encodeMetadata(savedContent.metadata),
+            embeddingData: encodeEmbedding(savedContent.embeddingVector)
         )
     }
 
@@ -41,5 +44,19 @@ enum ContentMapper {
         guard !metadata.isEmpty else { return nil }
         guard let data = try? JSONEncoder().encode(metadata) else { return nil }
         return String(data: data, encoding: .utf8)
+    }
+
+    private static func decodeEmbedding(_ data: Data?) -> [Float]? {
+        guard let data, !data.isEmpty else { return nil }
+        return data.withUnsafeBytes { buffer in
+            Array(buffer.bindMemory(to: Float.self))
+        }
+    }
+
+    static func encodeEmbedding(_ vector: [Float]?) -> Data? {
+        guard let vector, !vector.isEmpty else { return nil }
+        return vector.withUnsafeBufferPointer { buffer in
+            Data(buffer: buffer)
+        }
     }
 }

@@ -58,6 +58,7 @@ struct HomeFeature {
     @Dependency(\.contentClient) var contentClient
     @Dependency(\.metadataClient) var metadataClient
     @Dependency(\.searchClient) var searchClient
+    @Dependency(\.embeddingClient) var embeddingClient
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -88,7 +89,7 @@ struct HomeFeature {
                 guard !needsUpdate.isEmpty else { return .none }
 
                 state.isUpdatingMetadata = true
-                return .run { [contentClient, metadataClient] send in
+                return .run { [contentClient, metadataClient, embeddingClient] send in
                     var updated: [SavedContent] = []
                     for var content in needsUpdate {
                         do {
@@ -98,6 +99,15 @@ struct HomeFeature {
                             content.thumbnailURL = metadata.imageURL
                             if let siteName = metadata.siteName {
                                 content.metadata["siteName"] = siteName
+                            }
+                            let textForEmbedding = [content.title, content.summary]
+                                .compactMap { $0 }
+                                .joined(separator: " ")
+                            if !textForEmbedding.isEmpty {
+                                let vector = try await embeddingClient.embed(textForEmbedding)
+                                if !vector.isEmpty {
+                                    content.embeddingVector = vector
+                                }
                             }
                             try await contentClient.update(content)
                             updated.append(content)

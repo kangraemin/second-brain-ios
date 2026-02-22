@@ -11,6 +11,7 @@ final class SDContent {
     var thumbnailURLString: String?
     var summary: String?
     var metadataJSON: String?
+    var embeddingData: Data?
 
     init(
         id: UUID,
@@ -20,7 +21,8 @@ final class SDContent {
         createdAt: Date,
         thumbnailURLString: String? = nil,
         summary: String? = nil,
-        metadataJSON: String? = nil
+        metadataJSON: String? = nil,
+        embeddingData: Data? = nil
     ) {
         self.id = id
         self.title = title
@@ -30,5 +32,6 @@ final class SDContent {
         self.thumbnailURLString = thumbnailURLString
         self.summary = summary
         self.metadataJSON = metadataJSON
+        self.embeddingData = embeddingData
     }
 }

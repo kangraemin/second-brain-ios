@@ -163,6 +163,7 @@ struct HomeFeatureTests {
     func metadataAutoUpdate() async {
         let needsUpdate = SavedContent.mock  // metadata=[:], thumbnailURL=nil, summary=nil
         let mockContents: [SavedContent] = [needsUpdate]
+        let mockEmbedding: [Float] = Array(repeating: 0.1, count: 128)
 
         let fetchedMetadata = ContentMetadata(
             title: "업데이트된 제목",
@@ -176,6 +177,7 @@ struct HomeFeatureTests {
         updatedContent.summary = "업데이트된 설명"
         updatedContent.thumbnailURL = URL(string: "https://example.com/og.png")
         updatedContent.metadata = ["siteName": "Example"]
+        updatedContent.embeddingVector = mockEmbedding
 
         let store = TestStore(initialState: HomeFeature.State()) {
             HomeFeature()
@@ -183,6 +185,7 @@ struct HomeFeatureTests {
             $0.contentClient.fetch = { mockContents }
             $0.contentClient.update = { _ in }
             $0.metadataClient.fetch = { _ in fetchedMetadata }
+            $0.embeddingClient.embed = { _ in mockEmbedding }
         }
 
         await store.send(.onAppear) {

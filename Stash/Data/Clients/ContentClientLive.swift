@@ -46,6 +46,7 @@ actor ContentModelActor {
             existing.thumbnailURLString = content.thumbnailURL?.absoluteString
             existing.summary = content.summary
             existing.metadataJSON = ContentMapper.encodeMetadata(content.metadata)
+            existing.embeddingData = ContentMapper.encodeEmbedding(content.embeddingVector)
             try modelContext.save()
         }
     }
