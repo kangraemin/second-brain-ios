@@ -116,7 +116,7 @@ TCA 기반 홈 화면 Feature 구현. 콘텐츠 목록 표시, 카테고리 필�
 ---
 
 ## Phase 3: Share Extension
-상태: 대기 ⏳
+상태: 완료 ✅
 
 다른 앱에서 1탭 저장 기능. Share Extension에서 URL 수신 → App Group 경유 SwiftData 저장.
 
