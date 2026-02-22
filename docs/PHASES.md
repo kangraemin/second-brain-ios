@@ -147,7 +147,7 @@ TCA 기반 홈 화면 Feature 구현. 콘텐츠 목록 표시, 카테고리 필�
 ---
 
 ## Phase 4: 상세 화면 + 딥링크
-상태: 대기 ⏳
+상태: 완료 ✅
 
 콘텐츠 상세 화면, 원본 앱으로의 딥링크, 삭제 기능.
 
@@ -182,19 +182,41 @@ TCA 기반 홈 화면 Feature 구현. 콘텐츠 목록 표시, 카테고리 필�
 ---
 
 ## Phase 5: 검색
-상태: 대기 ⏳
+상태: 진행 중 🔄
 
 키워드 검색 → 시맨틱 검색 순서로 구현. Core ML 온디바이스 임베딩.
 
-### 개요
-- SearchClient Protocol 정의
-- 키워드 검색 liveValue (localizedStandardContains)
-- HomeFeature 검색 연동 (디바운스)
-- EmbeddingService Protocol 정의
-- NLContextualEmbedding 기반 liveValue
-- 콘텐츠 저장 시 임베딩 벡터 생성
-- 코사인 유사도 벡터 검색
-- 키워드 + 시맨틱 결과 병합 랭킹
+### Step 5.1: SearchClient Protocol 정의
+- 구현: `SearchClient` struct (search 클로저) + DependencyKey 등록 + testValue mock (Domain/Services/SearchClient.swift)
+- 완료 기준: 빌드 성공, testValue 존재
+
+### Step 5.2: 키워드 검색 liveValue 구현
+- 구현: ContentClient.fetch() 결과에서 localizedStandardContains로 title, summary, url 필터링 (Data/Clients/SearchClientLive.swift)
+- 완료 기준: 키워드 검색 테스트 통과
+
+### Step 5.3: HomeFeature 검색 연동
+- 구현: HomeFeature에 searchQuery State + searchQueryChanged Action + 디바운스 300ms (cancellable) + HomeView 검색바 UI
+- 완료 기준: TestStore 테스트 - 검색 시 결과 반영 검증, 빌드 성공
+
+### Step 5.4: EmbeddingClient Protocol 정의
+- 구현: `EmbeddingClient` struct (embed 클로저: String → [Float]) + DependencyKey 등록 + testValue mock (Domain/Services/EmbeddingClient.swift)
+- 완료 기준: 빌드 성공, testValue 존재
+
+### Step 5.5: NLContextualEmbedding 기반 liveValue
+- 구현: NLContextualEmbedding 사용하여 텍스트 → 임베딩 벡터 변환 (ML/EmbeddingService/EmbeddingClientLive.swift)
+- 완료 기준: 임베딩 벡터 생성 테스트 통과
+
+### Step 5.6: 콘텐츠 임베딩 벡터 저장
+- 구현: SDContent에 embeddingData 필드 추가, 메타데이터 업데이트 시 임베딩 생성 및 저장
+- 완료 기준: 콘텐츠 저장 시 임베딩 벡터 함께 저장 확인, 빌드 성공
+
+### Step 5.7: 코사인 유사도 벡터 검색
+- 구현: 쿼리 임베딩 vs 저장된 임베딩 코사인 유사도 계산 + 임계값 기반 결과 반환 (ML/VectorSearch/VectorSearchService.swift)
+- 완료 기준: 코사인 유사도 계산 테스트 통과
+
+### Step 5.8: 하이브리드 검색 결과 병합
+- 구현: SearchClient에 키워드 + 시맨틱 결과 병합, 중복 제거, 가중 점수 랭킹
+- 완료 기준: 병합 랭킹 테스트 통과, 전체 검색 플로우 동작 확인
 
 ---
 
