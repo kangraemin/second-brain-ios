@@ -41,6 +41,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .alert($store.scope(state: \.alert, action: \.alert))
             .onAppear { store.send(.onAppear) }
         } destination: { store in
             switch store.case {
@@ -87,15 +88,21 @@ struct HomeView: View {
     // MARK: - Empty State
 
     private var emptyState: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 12) {
             if store.searchQuery.isEmpty {
+                Image(systemName: "tray")
+                    .font(.system(size: 48))
+                    .foregroundStyle(.quaternary)
                 Text("저장된 콘텐츠가 없습니다")
                     .font(.headline)
                     .foregroundStyle(.secondary)
-                Text("공유하기로 콘텐츠를 저장해 보세요")
+                Text("다른 앱에서 공유하기로 콘텐츠를 저장해 보세요")
                     .font(.subheadline)
                     .foregroundStyle(.tertiary)
             } else {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 48))
+                    .foregroundStyle(.quaternary)
                 Text("검색 결과가 없습니다")
                     .font(.headline)
                     .foregroundStyle(.secondary)

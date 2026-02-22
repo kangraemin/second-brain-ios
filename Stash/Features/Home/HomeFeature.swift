@@ -18,6 +18,7 @@ struct HomeFeature {
         var searchQuery = ""
         var isLoading = false
         var isUpdatingMetadata = false
+        @Presents var alert: AlertState<Action.Alert>?
 
         static func == (lhs: State, rhs: State) -> Bool {
             lhs.contents == rhs.contents
@@ -51,6 +52,11 @@ struct HomeFeature {
         case swipeDeleteTapped(SavedContent)
         case settingsTapped
         case path(StackActionOf<Path>)
+        case alert(PresentationAction<Alert>)
+
+        enum Alert: Equatable {
+            case retry
+        }
     }
 
     private enum CancelID {
@@ -122,6 +128,24 @@ struct HomeFeature {
 
             case .contentsLoadFailed:
                 state.isLoading = false
+                state.alert = AlertState {
+                    TextState("로드 실패")
+                } actions: {
+                    ButtonState(action: .retry) {
+                        TextState("다시 시도")
+                    }
+                    ButtonState(role: .cancel) {
+                        TextState("확인")
+                    }
+                } message: {
+                    TextState("콘텐츠를 불러오지 못했습니다.")
+                }
+                return .none
+
+            case .alert(.presented(.retry)):
+                return .send(.onAppear)
+
+            case .alert:
                 return .none
 
             case .metadataUpdateCompleted(let updatedContents):
@@ -192,6 +216,7 @@ struct HomeFeature {
                 return .none
             }
         }
+        .ifLet(\.$alert, action: \.alert)
         .forEach(\.path, action: \.path)
     }
 }
