@@ -6,10 +6,6 @@ struct SearchClient {
 }
 
 extension SearchClient: DependencyKey {
-    static let liveValue = SearchClient(
-        search: unimplemented("\(Self.self).search")
-    )
-
     static let testValue = SearchClient(
         search: { _ in [] }
     )

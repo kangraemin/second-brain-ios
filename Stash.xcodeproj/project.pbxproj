@@ -52,6 +52,7 @@
 		KK000005 /* DeepLinkBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000015 /* DeepLinkBuilderTests.swift */; };
 		LL000001 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL000011 /* SearchClient.swift */; };
 		LL000002 /* EmbeddingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL000012 /* EmbeddingClient.swift */; };
+		MM000001 /* SearchClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = MM000011 /* SearchClientLive.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		KK000015 /* DeepLinkBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkBuilderTests.swift; sourceTree = "<group>"; };
 		LL000011 /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		LL000012 /* EmbeddingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingClient.swift; sourceTree = "<group>"; };
+		MM000011 /* SearchClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClientLive.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			children = (
 				EE000017 /* ContentClientLive.swift */,
 				JJ000011 /* MetadataClientLive.swift */,
+				MM000011 /* SearchClientLive.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				KK000004 /* OpenURLClient.swift in Sources */,
 				LL000001 /* SearchClient.swift in Sources */,
 				LL000002 /* EmbeddingClient.swift in Sources */,
+				MM000001 /* SearchClientLive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
