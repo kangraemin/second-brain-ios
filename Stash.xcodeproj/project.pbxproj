@@ -45,6 +45,11 @@
 		II000008 /* ShareExtensionSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = II000012 /* ShareExtensionSaverTests.swift */; };
 		JJ000001 /* MetadataClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = JJ000011 /* MetadataClientLive.swift */; };
 		JJ000002 /* OGTagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = JJ000012 /* OGTagParserTests.swift */; };
+		KK000001 /* DetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000011 /* DetailFeature.swift */; };
+		KK000002 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000012 /* DetailView.swift */; };
+		KK000003 /* DeepLinkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000013 /* DeepLinkBuilder.swift */; };
+		KK000004 /* OpenURLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000014 /* OpenURLClient.swift */; };
+		KK000005 /* DeepLinkBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = KK000015 /* DeepLinkBuilderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +118,11 @@
 		II000012 /* ShareExtensionSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionSaverTests.swift; sourceTree = "<group>"; };
 		JJ000011 /* MetadataClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataClientLive.swift; sourceTree = "<group>"; };
 		JJ000012 /* OGTagParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGTagParserTests.swift; sourceTree = "<group>"; };
+		KK000011 /* DetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeature.swift; sourceTree = "<group>"; };
+		KK000012 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		KK000013 /* DeepLinkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkBuilder.swift; sourceTree = "<group>"; };
+		KK000014 /* OpenURLClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenURLClient.swift; sourceTree = "<group>"; };
+		KK000015 /* DeepLinkBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkBuilderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +219,8 @@
 		BB000005 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				KK000011 /* DetailFeature.swift */,
+				KK000012 /* DetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -252,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				EE000011 /* ContentTypeParser.swift */,
+				KK000013 /* DeepLinkBuilder.swift */,
 			);
 			path = ContentParsing;
 			sourceTree = "<group>";
@@ -261,6 +274,7 @@
 			children = (
 				EE000014 /* ContentClient.swift */,
 				HH000012 /* MetadataClient.swift */,
+				KK000014 /* OpenURLClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -390,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				EE000012 /* ContentTypeParserTests.swift */,
+				KK000015 /* DeepLinkBuilderTests.swift */,
 				HH000013 /* MetadataClientTests.swift */,
 			);
 			path = Domain;
@@ -569,6 +584,10 @@
 				HH000002 /* MetadataClient.swift in Sources */,
 				II000001 /* ShareExtensionSaver.swift in Sources */,
 				JJ000001 /* MetadataClientLive.swift in Sources */,
+				KK000001 /* DetailFeature.swift in Sources */,
+				KK000002 /* DetailView.swift in Sources */,
+				KK000003 /* DeepLinkBuilder.swift in Sources */,
+				KK000004 /* OpenURLClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +603,7 @@
 				HH000003 /* MetadataClientTests.swift in Sources */,
 				II000008 /* ShareExtensionSaverTests.swift in Sources */,
 				JJ000002 /* OGTagParserTests.swift in Sources */,
+				KK000005 /* DeepLinkBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
