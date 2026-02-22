@@ -35,6 +35,14 @@
 		HH000001 /* ContentMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = HH000011 /* ContentMetadata.swift */; };
 		HH000002 /* MetadataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = HH000012 /* MetadataClient.swift */; };
 		HH000003 /* MetadataClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = HH000013 /* MetadataClientTests.swift */; };
+		II000001 /* ShareExtensionSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = II000011 /* ShareExtensionSaver.swift */; };
+		II000002 /* ShareExtensionSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = II000011 /* ShareExtensionSaver.swift */; };
+		II000003 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000011 /* ContentType.swift */; };
+		II000004 /* SavedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000012 /* SavedContent.swift */; };
+		II000005 /* ContentTypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000011 /* ContentTypeParser.swift */; };
+		II000006 /* SDContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000013 /* SDContent.swift */; };
+		II000007 /* ContentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000015 /* ContentMapper.swift */; };
+		II000008 /* ShareExtensionSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = II000012 /* ShareExtensionSaverTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +107,8 @@
 		HH000011 /* ContentMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMetadata.swift; sourceTree = "<group>"; };
 		HH000012 /* MetadataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataClient.swift; sourceTree = "<group>"; };
 		HH000013 /* MetadataClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataClientTests.swift; sourceTree = "<group>"; };
+		II000011 /* ShareExtensionSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionSaver.swift; sourceTree = "<group>"; };
+		II000012 /* ShareExtensionSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionSaverTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +329,7 @@
 		BB000041 /* AppGroup */ = {
 			isa = PBXGroup;
 			children = (
+				II000011 /* ShareExtensionSaver.swift */,
 				GG000011 /* URLExtractor.swift */,
 			);
 			path = AppGroup;
@@ -356,6 +367,7 @@
 		GG000080 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				II000012 /* ShareExtensionSaverTests.swift */,
 				GG000012 /* URLExtractorTests.swift */,
 			);
 			path = Shared;
@@ -549,6 +561,7 @@
 				GG000001 /* URLExtractor.swift in Sources */,
 				HH000001 /* ContentMetadata.swift in Sources */,
 				HH000002 /* MetadataClient.swift in Sources */,
+				II000001 /* ShareExtensionSaver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +575,7 @@
 				FF000005 /* HomeFeatureTests.swift in Sources */,
 				GG000003 /* URLExtractorTests.swift in Sources */,
 				HH000003 /* MetadataClientTests.swift in Sources */,
+				II000008 /* ShareExtensionSaverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +585,12 @@
 			files = (
 				CC000001 /* ShareViewController.swift in Sources */,
 				GG000002 /* URLExtractor.swift in Sources */,
+				II000002 /* ShareExtensionSaver.swift in Sources */,
+				II000003 /* ContentType.swift in Sources */,
+				II000004 /* SavedContent.swift in Sources */,
+				II000005 /* ContentTypeParser.swift in Sources */,
+				II000006 /* SDContent.swift in Sources */,
+				II000007 /* ContentMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
