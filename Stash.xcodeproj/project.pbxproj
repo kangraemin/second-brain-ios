@@ -53,6 +53,7 @@
 		LL000001 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL000011 /* SearchClient.swift */; };
 		LL000002 /* EmbeddingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL000012 /* EmbeddingClient.swift */; };
 		MM000001 /* SearchClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = MM000011 /* SearchClientLive.swift */; };
+		NN000001 /* EmbeddingClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000011 /* EmbeddingClientLive.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		LL000011 /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		LL000012 /* EmbeddingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingClient.swift; sourceTree = "<group>"; };
 		MM000011 /* SearchClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClientLive.swift; sourceTree = "<group>"; };
+		NN000011 /* EmbeddingClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingClientLive.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 		BB000031 /* EmbeddingService */ = {
 			isa = PBXGroup;
 			children = (
+				NN000011 /* EmbeddingClientLive.swift */,
 			);
 			path = EmbeddingService;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				LL000001 /* SearchClient.swift in Sources */,
 				LL000002 /* EmbeddingClient.swift in Sources */,
 				MM000001 /* SearchClientLive.swift in Sources */,
+				NN000001 /* EmbeddingClientLive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

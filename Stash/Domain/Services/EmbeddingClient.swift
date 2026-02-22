@@ -6,10 +6,6 @@ struct EmbeddingClient {
 }
 
 extension EmbeddingClient: DependencyKey {
-    static let liveValue = EmbeddingClient(
-        embed: unimplemented("\(Self.self).embed")
-    )
-
     static let testValue = EmbeddingClient(
         embed: { _ in Array(repeating: 0.0, count: 128) }
     )
