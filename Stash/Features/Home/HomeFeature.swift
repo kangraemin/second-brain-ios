@@ -6,6 +6,7 @@ struct HomeFeature {
     @Reducer
     enum Path {
         case detail(DetailFeature)
+        case settings(SettingsFeature)
     }
 
     @ObservableState
@@ -48,6 +49,7 @@ struct HomeFeature {
         case metadataUpdateCompleted([SavedContent])
         case metadataUpdateFailed
         case swipeDeleteTapped(SavedContent)
+        case settingsTapped
         case path(StackActionOf<Path>)
     }
 
@@ -162,6 +164,10 @@ struct HomeFeature {
                 state.filteredContents = applyFilter(
                     state.selectedFilter, to: filtered
                 )
+                return .none
+
+            case .settingsTapped:
+                state.path.append(.settings(SettingsFeature.State()))
                 return .none
 
             case .swipeDeleteTapped(let content):

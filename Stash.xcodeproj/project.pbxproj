@@ -56,6 +56,8 @@
 		NN000001 /* EmbeddingClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000011 /* EmbeddingClientLive.swift */; };
 		NN000002 /* VectorSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000012 /* VectorSearchService.swift */; };
 		NN000003 /* VectorSearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000013 /* VectorSearchServiceTests.swift */; };
+		NN000004 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000014 /* SettingsFeature.swift */; };
+		NN000005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = NN000015 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		NN000011 /* EmbeddingClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingClientLive.swift; sourceTree = "<group>"; };
 		NN000012 /* VectorSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorSearchService.swift; sourceTree = "<group>"; };
 		NN000013 /* VectorSearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorSearchServiceTests.swift; sourceTree = "<group>"; };
+		NN000014 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
+		NN000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +251,8 @@
 		BB000007 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				NN000014 /* SettingsFeature.swift */,
+				NN000015 /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -619,6 +625,8 @@
 				MM000001 /* SearchClientLive.swift in Sources */,
 				NN000001 /* EmbeddingClientLive.swift in Sources */,
 				NN000002 /* VectorSearchService.swift in Sources */,
+				NN000004 /* SettingsFeature.swift in Sources */,
+				NN000005 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,11 +32,22 @@ struct HomeView: View {
                 ),
                 prompt: "콘텐츠 검색"
             )
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        store.send(.settingsTapped)
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
+            }
             .onAppear { store.send(.onAppear) }
         } destination: { store in
             switch store.case {
             case .detail(let detailStore):
                 DetailView(store: detailStore)
+            case .settings(let settingsStore):
+                SettingsView(store: settingsStore)
             }
         }
     }
